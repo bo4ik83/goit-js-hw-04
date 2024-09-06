@@ -1,10 +1,20 @@
-function slugify(title) {
-  // Перетворюємо заголовок на нижній регістр, розбиваємо на слова та об'єднуємо з тире
-  return title.toLowerCase().split(' ').join('-');
+function isEnoughCapacity(products, containerSize) {
+  const quantities = Object.values(products);
+
+  const totalProducts = quantities.reduce(
+    (total, quantity) => total + quantity,
+    0
+  );
+
+  return totalProducts <= containerSize;
 }
 
-// Перевірка роботи функції
-console.log(slugify("JavaScript Is Awesome")); // "javascript-is-awesome"
-console.log(slugify("Learning to Code")); // "learning-to-code"
-console.log(slugify("Hello World")); // "hello-world"
-console.log(slugify("Make Your Own Slug")); // "make-your-own-slug"
+// Перевірка коректної роботи функції:
+
+console.log(isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)); // true
+
+console.log(isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)); // false
+
+console.log(isEnoughCapacity({ apples: 1, lime: 5, tomatoes: 3 }, 14)); // true
+
+console.log(isEnoughCapacity({ apples: 18, potatoes: 5, oranges: 2 }, 7)); // false
