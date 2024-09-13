@@ -1,4 +1,7 @@
 function calcAverageCalories(days) {
+  if (days.length === 0) {
+    return 0;
+  }
   const totalCalories = days.reduce((total, day) => total + day.calories, 0);
   return totalCalories / days.length;
 }
